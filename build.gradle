@@ -1,0 +1,32 @@
+group 'kottpd'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url  "https://dl.bintray.com/jetbrains/kotlin-native-dependencies"
+        }
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:0.1"
+    }
+}
+
+apply plugin: 'konan'
+
+konanInterop {
+//    stdio {
+//        defFile 'stdio.def'
+//        includeDirs 'src/include'
+//    }
+}
+
+konanArtifacts {
+    ktnative {
+        inputFiles fileTree('src/main/')
+//        linerOpts ' -Lsrc/lib/'
+//        useInterop 'stdio'
+    }
+}
