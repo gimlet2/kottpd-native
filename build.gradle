@@ -5,28 +5,25 @@ buildscript {
     repositories {
         mavenCentral()
         maven {
-            url  "https://dl.bintray.com/jetbrains/kotlin-native-dependencies"
+            url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies"
         }
     }
 
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:0.1"
+        classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:+"
     }
 }
 
 apply plugin: 'konan'
 
 konanInterop {
-//    stdio {
-//        defFile 'stdio.def'
-//        includeDirs 'src/include'
-//    }
+    sockets { }
 }
 
 konanArtifacts {
-    ktnative {
+    kottpd {
         inputFiles fileTree('src/main/')
 //        linerOpts ' -Lsrc/lib/'
-//        useInterop 'stdio'
+        useInterop "sockets"
     }
 }
